@@ -5,7 +5,7 @@ const Countries = () => {
   const [countries, setCountries] = useState([])
 
   useEffect(()=> {
-    fetch('https://restcountries.com/v3.1/all')
+    fetch('https://restcountries.com/v3.1/all?fields=name,cca2,cca3,flags,area')
     .then(res => res.json())
     .then(data => setCountries(data))
   } , [])
@@ -13,7 +13,7 @@ const Countries = () => {
     <div>
         <h3>Countries {countries.length}</h3>
         {
-          countries.map(country => <Country country={country}></Country>)
+          countries.map(country => <Country key={country.cca3} country={country}></Country>)
         }
     </div>
   );
